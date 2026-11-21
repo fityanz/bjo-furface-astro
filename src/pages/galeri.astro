@@ -1,0 +1,353 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const galleryItems = [
+    {
+        src: "/assets/img/105609566.jpg",
+        alt: "Karya dekoratif peta kepulauan Indonesia yang dibuat dari potongan kayu jati dan resin",
+        caption: "Karya Peta Kepulauan Indonesia — Kayu Jati & Resin",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/105557148.jpg",
+        alt: "Lukisan resin motif ombak laut yang dipadukan dengan serat alami kayu jati",
+        caption: "Lukisan Resin Ombak — Eksplorasi Kayu & Resin",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/105730589.jpg",
+        alt: "Close-up tekstur perpaduan resin dan serat kayu jati hasil finishing Bjo Furface",
+        caption: "Close-up Tekstur Resin & Serat Jati",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/104233118.jpg",
+        alt: "Suasana interior area kerja dan peralatan produksi di workshop Bjo Furface Kemiri Barat",
+        caption: "Interior Workshop Bjo Furface — Kemiri Barat",
+        category: "Workshop & Showroom",
+    },
+    {
+        src: "/assets/img/105643419.jpg",
+        alt: "Display koleksi kerajinan kayu jati di ruang pamer showroom Bjo Furface",
+        caption: "Display Showroom Bjo Furface (1)",
+        category: "Workshop & Showroom",
+    },
+    {
+        src: "/assets/img/105708971.jpg",
+        alt: "Penataan produk tas kayu dan kerajinan jati pada rak display showroom Bjo Furface",
+        caption: "Display Showroom Bjo Furface (2)",
+        category: "Workshop & Showroom",
+    },
+    {
+        src: "/assets/img/penampan-island-2.jpg",
+        alt: "Penampan Island berbahan limbah kayu jati dan resin tampak sudut kedua",
+        caption: "Penampan Island — Detail Sudut 2",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/penampan-island-3.jpg",
+        alt: "Penampan Island berbahan limbah kayu jati dan resin menampilkan alur resin pulau",
+        caption: "Penampan Island — Detail Sudut 3",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/penampan-island-4.jpg",
+        alt: "Detail tepian dan konstruksi pegangan Penampan Island dari kayu jati",
+        caption: "Penampan Island — Detail Sudut 4",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/penampan-island-5.jpg",
+        alt: "Detail permukaan akhir Penampan Island perpaduan limbah kayu jati dan resin",
+        caption: "Penampan Island — Detail Sudut 5",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/wooden-watch-silver-3.jpg",
+        alt: "Detail dial dan casing jam tangan kayu Wooden Watch Silver",
+        caption: "Wooden Watch (Silver) — Detail Dial",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/wooden-watch-silver-4.jpg",
+        alt: "Detail rantai strap kayu jati pada Wooden Watch Silver",
+        caption: "Wooden Watch (Silver) — Detail Strap",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/wooden-watch-silver-5.jpg",
+        alt: "Tampilan keseluruhan jam tangan kayu Wooden Watch Silver",
+        caption: "Wooden Watch (Silver) — Detail Sudut 5",
+        category: "Karya & Detail",
+    },
+    {
+        src: "/assets/img/104240720.jpg",
+        alt: "Bahan baku limbah kayu jati di area produksi Bjo Furface",
+        caption: "Proses Produksi — Bahan Baku Limbah Jati",
+        category: "Proses Produksi",
+    },
+    {
+        src: "/assets/img/105208139.jpg",
+        alt: "Proses pemotongan limbah kayu jati oleh pengrajin Bjo Furface",
+        caption: "Proses Produksi — Pemotongan Kayu",
+        category: "Proses Produksi",
+    },
+    {
+        src: "/assets/img/104440232.jpg",
+        alt: "Proses perakitan komponen produk kayu jati di workshop",
+        caption: "Proses Produksi — Perakitan Komponen",
+        category: "Proses Produksi",
+    },
+    {
+        src: "/assets/img/105243057.jpg",
+        alt: "Proses poles permukaan kerajinan kayu jati di workshop Bjo Furface",
+        caption: "Proses Produksi — Poles & Finishing",
+        category: "Proses Produksi",
+    },
+];
+
+const galleryCategories = [
+    "Semua",
+    "Karya & Detail",
+    "Workshop & Showroom",
+    "Proses Produksi",
+];
+---
+
+<BaseLayout
+    title="Galeri — Bjo Furface | Dokumentasi Karya, Workshop & Showroom"
+    description="Galeri dokumentasi karya kayu jati dan resin, detail produk, proses produksi, workshop, serta showroom Bjo Furface di Batang."
+>
+    <!-- Editorial Banner -->
+    <section class="border-b border-wabi-stone bg-wabi-linen py-16 lg:py-24">
+        <div class="mx-auto grid max-w-[1420px] grid-cols-1 items-end gap-8 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:px-12">
+            <div>
+                <span class="mb-3 block text-[11.5px] font-medium uppercase tracking-[0.22em] text-wabi-brass">
+                    Arsip Visual
+                </span>
+                <h1 class="font-serif text-[40px] font-normal leading-[1.1] sm:text-[50px] lg:text-[56px]">
+                    Galeri Karya &amp; Workshop
+                </h1>
+            </div>
+            <p class="font-serif text-[20px] leading-relaxed text-wabi-char lg:text-[23px]">
+                Dokumentasi eksplorasi kayu jati dan resin, detail sudut produk,
+                hingga suasana pengerjaan dan ruang pamer Bjo Furface di Kemiri
+                Barat. Klik foto mana saja untuk memperbesar.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter & Grid Galeri -->
+    <section class="py-16 lg:py-24" aria-label="Galeri foto Bjo Furface">
+        <div class="mx-auto max-w-[1420px] px-5 sm:px-8 lg:px-12">
+            <div
+                class="mb-9 flex flex-wrap gap-2.5 border-b border-wabi-stone pb-6"
+                role="group"
+                aria-label="Filter kategori galeri"
+            >
+                {galleryCategories.map((cat, idx) => (
+                    <button
+                        type="button"
+                        data-gallery-filter={cat}
+                        aria-pressed={idx === 0 ? "true" : "false"}
+                        class:list={[
+                            "rounded-full border px-5 py-2 text-[13px] tracking-[0.05em] transition-colors duration-300",
+                            idx === 0
+                                ? "border-wabi-char bg-wabi-char text-wabi-paper"
+                                : "border-wabi-stone bg-transparent text-wabi-char hover:border-wabi-char",
+                        ]}
+                    >
+                        {cat}
+                    </button>
+                ))}
+            </div>
+
+            <div
+                id="gallery-grid"
+                class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"
+            >
+                {galleryItems.map((item) => (
+                    <figure
+                        data-gallery-category={item.category}
+                        class="reveal gallery-item m-0"
+                    >
+                        <button
+                            type="button"
+                            class="gallery-trigger group block aspect-[4/3] w-full cursor-zoom-in overflow-hidden rounded-[6px] bg-wabi-linen p-0"
+                            aria-label={`Perbesar foto ${item.caption}`}
+                        >
+                            <img
+                                src={item.src}
+                                alt={item.alt}
+                                loading="lazy"
+                                class="h-full w-full object-cover transition-transform duration-500 ease-luxury group-hover:scale-[1.03]"
+                            />
+                        </button>
+                        <figcaption class="gallery-caption mt-2.5 text-[13.5px] text-wabi-bark">
+                            {item.caption}
+                        </figcaption>
+                    </figure>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessible Lightbox Modal -->
+    <div
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lightbox-caption"
+        hidden
+        class="fixed inset-0 z-[1500] flex items-center justify-center p-6"
+    >
+        <div data-lightbox-close class="absolute inset-0 bg-[#140F0B]/92"></div>
+
+        <div class="relative z-[2] flex w-full max-w-5xl items-center justify-center">
+            <button
+                type="button"
+                id="lightbox-close"
+                aria-label="Tutup tampilan foto"
+                class="fixed right-6 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 text-2xl text-white transition-colors hover:bg-white/15"
+            >
+                &times;
+            </button>
+
+            <button
+                type="button"
+                id="lightbox-prev"
+                aria-label="Foto sebelumnya"
+                class="fixed left-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-wabi-walnut/80 text-white transition-colors hover:bg-white/20 sm:left-6"
+            >
+                <span class="material-symbols-outlined" aria-hidden="true">
+                    arrow_back_ios_new
+                </span>
+            </button>
+
+            <figure class="m-0 text-center">
+                <img
+                    src="/assets/img/105609566.jpg"
+                    alt=""
+                    id="lightbox-img"
+                    class="mx-auto max-h-[78vh] w-auto rounded-[4px] bg-wabi-walnut"
+                />
+                <figcaption
+                    id="lightbox-caption"
+                    class="mt-4 text-[14.5px] text-white/90"
+                ></figcaption>
+            </figure>
+
+            <button
+                type="button"
+                id="lightbox-next"
+                aria-label="Foto berikutnya"
+                class="fixed right-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-wabi-walnut/80 text-white transition-colors hover:bg-white/20 sm:right-6"
+            >
+                <span class="material-symbols-outlined" aria-hidden="true">
+                    arrow_forward_ios
+                </span>
+            </button>
+        </div>
+    </div>
+</BaseLayout>
+
+<script is:inline>
+  const galleryGrid = document.getElementById('gallery-grid');
+  const lightbox = document.getElementById('lightbox');
+
+  if (galleryGrid && lightbox) {
+    const filterBtns = document.querySelectorAll('[data-gallery-filter]');
+    const items = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
+    const triggers = Array.from(galleryGrid.querySelectorAll('.gallery-trigger'));
+
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCaption = document.getElementById('lightbox-caption');
+    const lbClose = document.getElementById('lightbox-close');
+    const lbPrev = document.getElementById('lightbox-prev');
+    const lbNext = document.getElementById('lightbox-next');
+    const lbBackdrop = lightbox.querySelector('[data-lightbox-close]');
+
+    let activeIndex = 0;
+    let lastFocused = null;
+
+    function getVisibleTriggers() {
+      return triggers.filter((btn) => {
+        const parent = btn.closest('.gallery-item');
+        return parent && !parent.classList.contains('hidden');
+      });
+    }
+
+    function updateLightbox(list, idx) {
+      const target = list[idx];
+      if (!target || !lbImg || !lbCaption) return;
+      const img = target.querySelector('img');
+      const parent = target.closest('.gallery-item');
+      const cap = parent ? parent.querySelector('.gallery-caption') : null;
+      if (!img) return;
+
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCaption.textContent = cap ? cap.textContent : img.alt;
+      activeIndex = idx;
+    }
+
+    function openLightbox(btn) {
+      const visible = getVisibleTriggers();
+      const idx = visible.indexOf(btn);
+      if (idx === -1) return;
+      lastFocused = btn;
+      updateLightbox(visible, idx);
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (lbClose) lbClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    function stepLightbox(delta) {
+      const visible = getVisibleTriggers();
+      if (visible.length === 0) return;
+      const next = (activeIndex + delta + visible.length) % visible.length;
+      updateLightbox(visible, next);
+    }
+
+    triggers.forEach((btn) => btn.addEventListener('click', () => openLightbox(btn)));
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    if (lbBackdrop) lbBackdrop.addEventListener('click', closeLightbox);
+    if (lbPrev) lbPrev.addEventListener('click', () => stepLightbox(-1));
+    if (lbNext) lbNext.addEventListener('click', () => stepLightbox(1));
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.hidden) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') stepLightbox(-1);
+      if (e.key === 'ArrowRight') stepLightbox(1);
+    });
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const selected = btn.getAttribute('data-gallery-filter');
+        filterBtns.forEach((b) => {
+          const active = b === btn;
+          b.setAttribute('aria-pressed', String(active));
+          b.classList.toggle('border-wabi-char', active);
+          b.classList.toggle('bg-wabi-char', active);
+          b.classList.toggle('text-wabi-paper', active);
+          b.classList.toggle('border-wabi-stone', !active);
+          b.classList.toggle('bg-transparent', !active);
+          b.classList.toggle('text-wabi-char', !active);
+        });
+
+        items.forEach((item) => {
+          const cat = item.getAttribute('data-gallery-category');
+          const show = selected === 'Semua' || cat === selected;
+          item.classList.toggle('hidden', !show);
+        });
+      });
+    });
+  }
+</script>

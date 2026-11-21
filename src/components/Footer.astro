@@ -1,0 +1,205 @@
+---
+import { BRAND_INFO, buildWhatsAppUrl } from "../data/products.js";
+
+const waFooterUrl = buildWhatsAppUrl(
+    "Halo Bjo Furface, saya menghubungi dari website resmi.",
+);
+const waMobileStickyUrl = buildWhatsAppUrl(
+    "Halo Bjo Furface, saya ingin bertanya tentang produk.",
+);
+---
+
+<footer class="bg-wabi-walnut pb-12 pt-20 text-white">
+    <div class="mx-auto max-w-[1420px] px-5 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 gap-12 border-b border-white/15 pb-14 lg:grid-cols-[1.4fr_1fr_1fr]">
+            <div>
+                <!-- filter brightness-0 invert mengubah logo abu-abu menjadi putih bersih di atas latar walnut -->
+                <img
+                    src="/assets/img/logo-bjo-resmi-tagline.png"
+                    alt="Logo resmi Bjo Furface lengkap dengan tagline One Product For One Person"
+                    width="195"
+                    height="68"
+                    loading="lazy"
+                    class="mb-6 h-auto w-[195px] brightness-0 invert"
+                />
+                <address class="max-w-sm text-[14.5px] not-italic leading-relaxed text-white/75">
+                    {BRAND_INFO.address}
+                </address>
+            </div>
+
+            <div>
+                <h2 class="mb-5 font-serif text-[22px] font-normal tracking-wide text-white">
+                    Bantuan &amp; Navigasi
+                </h2>
+                <ul class="flex flex-col gap-3 text-[14px] text-white/75">
+                    <li>
+                        <a href="/" class="transition-colors hover:text-white">
+                            Beranda
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/tentang"
+                            class="transition-colors hover:text-white"
+                        >
+                            Tentang Kami
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/produk"
+                            class="transition-colors hover:text-white"
+                        >
+                            Katalog Produk
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/keunggulan"
+                            class="transition-colors hover:text-white"
+                        >
+                            Keunggulan
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/galeri"
+                            class="transition-colors hover:text-white"
+                        >
+                            Galeri
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/kontak"
+                            class="transition-colors hover:text-white"
+                        >
+                            Kontak
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href={BRAND_INFO.shopeeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="transition-colors hover:text-white"
+                        >
+                            Official Store Shopee
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="mb-5 font-serif text-[22px] font-normal tracking-wide text-white">
+                    Komunitas
+                </h2>
+                <ul class="flex flex-col gap-3 text-[14px] text-white/75">
+                    <li>
+                        <a
+                            href={BRAND_INFO.instagramMain}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="transition-colors hover:text-white"
+                        >
+                            Instagram @bjofurface
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href={BRAND_INFO.instagramFashion}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="transition-colors hover:text-white"
+                        >
+                            Instagram @bjofurface_fashion (Fashion)
+                        </a>
+                    </li>
+                    <li>
+                        <!-- GANTI: nomor WA resmi dari admin -->
+                        <a
+                            href={waFooterUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="transition-colors hover:text-white"
+                        >
+                            WhatsApp Admin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-7 text-[13px] text-white/60">
+            <p>&copy; 2026 Bjo Furface. Hak Cipta Dilindungi.</p>
+            <!-- ISI DARI ADMIN: lengkapi nama anggota kelompok UAS Web Programming jika diperlukan -->
+            <p>
+                Katalog Resmi &amp; Cerita Brand &mdash; Proyek UAS Web
+                Programming
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Sticky Mobile WhatsApp CTA -->
+<!-- GANTI: nomor WA resmi dari admin -->
+<a
+    href={waMobileStickyUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="fixed bottom-0 left-0 right-0 z-[960] flex h-[52px] items-center justify-center border-t border-white/20 bg-wabi-walnut text-[13px] font-medium uppercase tracking-[0.14em] text-white sm:hidden"
+>
+    Chat WhatsApp
+</a>
+
+<!-- Back to Top -->
+<button
+    type="button"
+    id="back-to-top"
+    aria-label="Kembali ke atas halaman"
+    class="pointer-events-none fixed bottom-16 right-4 z-[950] flex h-11 w-11 translate-y-3 items-center justify-center rounded-full border border-white/25 bg-wabi-walnut text-white opacity-0 transition-all duration-300 ease-luxury sm:bottom-6 sm:right-6"
+>
+    &#8593;
+</button>
+
+<script>
+    const backBtn = document.getElementById("back-to-top");
+    const reduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    window.addEventListener(
+        "scroll",
+        () => {
+            if (!backBtn) return;
+            if (window.scrollY > 420) {
+                backBtn.classList.remove(
+                    "opacity-0",
+                    "translate-y-3",
+                    "pointer-events-none",
+                );
+                backBtn.classList.add(
+                    "opacity-100",
+                    "translate-y-0",
+                    "pointer-events-auto",
+                );
+            } else {
+                backBtn.classList.add(
+                    "opacity-0",
+                    "translate-y-3",
+                    "pointer-events-none",
+                );
+                backBtn.classList.remove(
+                    "opacity-100",
+                    "translate-y-0",
+                    "pointer-events-auto",
+                );
+            }
+        },
+        { passive: true },
+    );
+
+    backBtn?.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    });
+</script>

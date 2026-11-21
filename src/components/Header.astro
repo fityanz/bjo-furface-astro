@@ -1,0 +1,295 @@
+---
+import { buildWhatsAppUrl } from "../data/products.js";
+
+interface Props {
+    transparentHero?: boolean;
+    currentPath?: string;
+}
+
+const { transparentHero = false, currentPath = "/" } = Astro.props;
+
+const navLinks = [
+    { href: "/", label: "Beranda" },
+    { href: "/tentang", label: "Tentang" },
+    { href: "/produk", label: "Produk" },
+    { href: "/keunggulan", label: "Keunggulan" },
+    { href: "/galeri", label: "Galeri" },
+    { href: "/kontak", label: "Kontak" },
+];
+
+const waDefaultUrl = buildWhatsAppUrl(
+    "Halo Bjo Furface, saya ingin bertanya mengenai koleksi produk.",
+);
+
+function isCurrent(href: string) {
+    const cleanCurrent = currentPath.replace(/\/$/, "") || "/";
+    const cleanHref = href.replace(/\/$/, "") || "/";
+    return cleanCurrent === cleanHref;
+}
+---
+
+<header
+    id="site-header"
+    data-transparent={transparentHero ? "true" : "false"}
+    class:list={[
+        "z-[1000] w-full transition-colors duration-300 ease-luxury",
+        transparentHero
+            ? "fixed left-0 top-9 border-b border-white/15 bg-transparent text-white"
+            : "sticky top-0 border-b border-wabi-stone bg-wabi-paper/95 text-wabi-char backdrop-blur-sm",
+    ]}
+>
+    <div class="mx-auto flex h-20 max-w-[1420px] items-center justify-between gap-5 px-5 sm:px-8 lg:px-12">
+        <a
+            href="/"
+            class="inline-flex shrink-0 items-center gap-3.5"
+            aria-label="Beranda Bjo Furface"
+        >
+            <img
+                id="header-logo-mark"
+                src="/assets/img/logo-bjo-mark.png"
+                alt="Logo tiga lingkaran Bjo Furface"
+                width="30"
+                height="30"
+                class:list={[
+                    "h-[30px] w-[30px] object-contain transition-all duration-300",
+                    transparentHero && "brightness-0 invert",
+                ]}
+            />
+            <span class="font-sans text-[14px] font-medium uppercase tracking-[0.28em]">
+                BJO FURFACE
+            </span>
+        </a>
+
+        <nav class="hidden items-center lg:flex" aria-label="Navigasi utama">
+            <ul class="flex items-center gap-7 xl:gap-9">
+                {navLinks.map((item) => {
+                    const active = isCurrent(item.href);
+                    return (
+                        <li>
+                            <a
+                                href={item.href}
+                                aria-current={active ? "page" : undefined}
+                                class:list={[
+                                    "relative py-1.5 text-[13.5px] tracking-[0.08em] transition-opacity duration-300",
+                                    "after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:bg-current after:transition-transform after:duration-300 after:ease-luxury",
+                                    active
+                                        ? "after:scale-x-100"
+                                        : "after:scale-x-0 hover:after:scale-x-100",
+                                ]}
+                            >
+                                {item.label}
+                            </a>
+                        </li>
+                    );
+                })}
+            </ul>
+        </nav>
+
+        <div class="flex items-center gap-3">
+            <!-- GANTI: nomor WA resmi dari admin -->
+            <a
+                id="header-wa-cta"
+                href={waDefaultUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class:list={[
+                    "hidden rounded-full border px-5 py-2 text-[12.5px] font-medium tracking-[0.08em] transition-all duration-300 ease-luxury sm:inline-flex",
+                    transparentHero
+                        ? "border-white/75 text-white hover:bg-white hover:text-wabi-char"
+                        : "border-wabi-char bg-wabi-char text-wabi-paper hover:bg-wabi-walnut",
+                ]}
+            >
+                Chat WhatsApp
+            </a>
+
+            <button
+                type="button"
+                id="nav-toggle"
+                aria-expanded="false"
+                aria-controls="mobile-drawer"
+                aria-label="Buka menu navigasi"
+                class="inline-flex flex-col gap-[5px] p-2 lg:hidden"
+            >
+                <span class="block h-[1.5px] w-[22px] bg-current"></span>
+                <span class="block h-[1.5px] w-[22px] bg-current"></span>
+                <span class="block h-[1.5px] w-[22px] bg-current"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div
+    id="drawer-backdrop"
+    hidden
+    class="fixed inset-0 z-[1100] bg-wabi-walnut/50 opacity-0 transition-opacity duration-300"
+></div>
+
+<aside
+    id="mobile-drawer"
+    aria-label="Menu seluler"
+    aria-hidden="true"
+    class="fixed right-0 top-0 z-[1110] flex h-dvh w-[min(340px,86vw)] translate-x-full flex-col justify-between bg-wabi-paper p-6 text-wabi-char transition-transform duration-300 ease-luxury"
+>
+    <div>
+        <div class="flex items-center justify-between border-b border-wabi-stone pb-4">
+            <span class="text-[14px] font-medium uppercase tracking-[0.26em]">
+                BJO FURFACE
+            </span>
+            <button
+                type="button"
+                id="drawer-close"
+                aria-label="Tutup menu navigasi"
+                class="px-2 py-1 text-2xl leading-none"
+            >
+                &times;
+            </button>
+        </div>
+
+        <nav class="mt-7" aria-label="Navigasi seluler">
+            <ul class="flex flex-col gap-4">
+                {navLinks.map((item) => {
+                    const active = isCurrent(item.href);
+                    return (
+                        <li>
+                            <a
+                                href={item.href}
+                                aria-current={active ? "page" : undefined}
+                                class:list={[
+                                    "block py-1 font-serif text-[30px] leading-tight transition-colors",
+                                    active
+                                        ? "italic text-wabi-brass"
+                                        : "text-wabi-char hover:text-wabi-brass",
+                                ]}
+                            >
+                                {item.label}
+                            </a>
+                        </li>
+                    );
+                })}
+            </ul>
+        </nav>
+    </div>
+
+    <div>
+        <!-- GANTI: nomor WA resmi dari admin -->
+        <a
+            href={waDefaultUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex w-full items-center justify-center rounded-full bg-wabi-char px-6 py-3.5 text-[13.5px] font-medium tracking-[0.08em] text-wabi-paper"
+        >
+            Chat WhatsApp
+        </a>
+    </div>
+</aside>
+
+<script>
+    const header = document.getElementById("site-header");
+    const logoMark = document.getElementById("header-logo-mark");
+    const headerCta = document.getElementById("header-wa-cta");
+
+    function syncHeaderScroll() {
+        if (!header || header.dataset.transparent !== "true") return;
+        const scrolled = window.scrollY > 40;
+
+        if (scrolled) {
+            header.classList.remove(
+                "top-9",
+                "bg-transparent",
+                "text-white",
+                "border-white/15",
+            );
+            header.classList.add(
+                "top-0",
+                "bg-wabi-paper/95",
+                "text-wabi-char",
+                "border-wabi-stone",
+                "backdrop-blur-sm",
+            );
+            logoMark?.classList.remove("brightness-0", "invert");
+            headerCta?.classList.remove(
+                "border-white/75",
+                "text-white",
+                "hover:bg-white",
+                "hover:text-wabi-char",
+            );
+            headerCta?.classList.add(
+                "border-wabi-char",
+                "bg-wabi-char",
+                "text-wabi-paper",
+                "hover:bg-wabi-walnut",
+            );
+        } else {
+            header.classList.add(
+                "top-9",
+                "bg-transparent",
+                "text-white",
+                "border-white/15",
+            );
+            header.classList.remove(
+                "top-0",
+                "bg-wabi-paper/95",
+                "text-wabi-char",
+                "border-wabi-stone",
+                "backdrop-blur-sm",
+            );
+            logoMark?.classList.add("brightness-0", "invert");
+            headerCta?.classList.add(
+                "border-white/75",
+                "text-white",
+                "hover:bg-white",
+                "hover:text-wabi-char",
+            );
+            headerCta?.classList.remove(
+                "border-wabi-char",
+                "bg-wabi-char",
+                "text-wabi-paper",
+                "hover:bg-wabi-walnut",
+            );
+        }
+    }
+
+    window.addEventListener("scroll", syncHeaderScroll, { passive: true });
+    syncHeaderScroll();
+
+    const toggle = document.getElementById("nav-toggle");
+    const drawer = document.getElementById("mobile-drawer");
+    const backdrop = document.getElementById("drawer-backdrop");
+    const closeBtn = document.getElementById("drawer-close");
+
+    function openDrawer() {
+        if (!toggle || !drawer || !backdrop) return;
+        toggle.setAttribute("aria-expanded", "true");
+        drawer.setAttribute("aria-hidden", "false");
+        drawer.classList.remove("translate-x-full");
+        backdrop.hidden = false;
+        requestAnimationFrame(() => backdrop.classList.add("opacity-100"));
+        closeBtn?.focus();
+    }
+
+    function closeDrawer() {
+        if (!toggle || !drawer || !backdrop) return;
+        toggle.setAttribute("aria-expanded", "false");
+        drawer.setAttribute("aria-hidden", "true");
+        drawer.classList.add("translate-x-full");
+        backdrop.classList.remove("opacity-100");
+        setTimeout(() => {
+            backdrop.hidden = true;
+        }, 300);
+        toggle.focus();
+    }
+
+    toggle?.addEventListener("click", openDrawer);
+    closeBtn?.addEventListener("click", closeDrawer);
+    backdrop?.addEventListener("click", closeDrawer);
+    document.addEventListener("keydown", (e) => {
+        if (
+            e.key === "Escape" &&
+            drawer &&
+            !drawer.classList.contains("translate-x-full")
+        ) {
+            closeDrawer();
+        }
+    });
+</script>

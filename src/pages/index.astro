@@ -1,0 +1,649 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { PRODUCTS } from "../data/products.js";
+
+const orderedProducts = [
+    ...PRODUCTS.filter((p) => p.featured),
+    ...PRODUCTS.filter((p) => !p.featured),
+];
+---
+
+<BaseLayout
+    title="Bjo Furface — One Product For One Person | Kerajinan Limbah Kayu Jati"
+    description="Bjo Furface adalah brand tas kayu dan kerajinan dari limbah kayu jati asal Desa Kemiri Barat, Subah, Kabupaten Batang sejak 2017. One Product For One Person."
+    transparentHero={true}
+>
+    <!-- 1. Hero Full Viewport Carousel -->
+    <section
+        class="relative h-[calc(100vh-36px)] min-h-[580px] overflow-hidden bg-[#11100E] text-white"
+        aria-roledescription="carousel"
+        aria-label="Sorotan koleksi utama Bjo Furface"
+    >
+        <div class="relative h-full w-full">
+            <article
+                data-hero-slide
+                aria-hidden="false"
+                class="pointer-events-auto absolute inset-0 opacity-100 transition-opacity duration-700 ease-luxury"
+            >
+                <img
+                    src="/assets/img/pemba-abstrack.jpg"
+                    alt="Tas kayu Pemba Abstrack karya Bjo Furface berlatar hitam dengan motif serat kayu jati dan resin"
+                    class="h-full w-full object-cover object-center"
+                />
+            </article>
+
+            <article
+                data-hero-slide
+                aria-hidden="true"
+                class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 ease-luxury"
+            >
+                <img
+                    src="/assets/img/lucia-island-new-natural.jpg"
+                    alt="Tas kayu Lucia Island New Natural karya Bjo Furface berlatar gelap dengan perpaduan serat alami kayu jati"
+                    class="h-full w-full object-cover object-center"
+                />
+            </article>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 z-[2] w-full max-w-4xl -translate-x-1/2 px-6 text-center sm:bottom-14">
+            <p class="mb-3 text-[11.5px] uppercase tracking-[0.28em] text-white/80">
+                Kerajinan Limbah Kayu Jati &bull; Batang
+            </p>
+            <h1 class="mb-7 font-serif text-[40px] font-light leading-[1.08] tracking-tight text-white sm:text-[56px] lg:text-[64px]">
+                One Product For One Person
+            </h1>
+            <a
+                href="/produk"
+                class="inline-flex items-center justify-center rounded-full bg-wabi-paper px-8 py-3.5 text-[13px] font-medium uppercase tracking-[0.14em] text-wabi-char transition-colors duration-300 hover:bg-wabi-linen"
+            >
+                Lihat Katalog
+            </a>
+
+            <div
+                class="mt-8 flex items-center justify-center gap-5"
+                aria-label="Kontrol slide hero"
+            >
+                <button
+                    type="button"
+                    id="hero-prev"
+                    aria-label="Slide sebelumnya"
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 text-white transition-colors hover:border-white hover:bg-white/15"
+                >
+                    <span class="material-symbols-outlined" aria-hidden="true">
+                        arrow_back_ios_new
+                    </span>
+                </button>
+
+                <div
+                    class="inline-flex items-center gap-2.5"
+                    role="tablist"
+                    aria-label="Pilih slide"
+                >
+                    <button
+                        type="button"
+                        data-hero-dot="0"
+                        aria-label="Slide 1: Pemba Abstrack"
+                        aria-selected="true"
+                        class="h-2 w-2 scale-125 rounded-full border border-white bg-white transition-all"
+                    ></button>
+                    <button
+                        type="button"
+                        data-hero-dot="1"
+                        aria-label="Slide 2: Lucia Island New Natural"
+                        aria-selected="false"
+                        class="h-2 w-2 rounded-full border border-white bg-transparent transition-all"
+                    ></button>
+                </div>
+
+                <button
+                    type="button"
+                    id="hero-next"
+                    aria-label="Slide berikutnya"
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 text-white transition-colors hover:border-white hover:bg-white/15"
+                >
+                    <span class="material-symbols-outlined" aria-hidden="true">
+                        arrow_forward_ios
+                    </span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Pilihan Karya (Carousel Kartu dengan Peek Kanan + Tab Unggulan) -->
+    <section class="py-20 lg:py-28" aria-labelledby="heading-featured">
+        <div class="mx-auto max-w-[1420px] px-5 sm:px-8 lg:px-12">
+            <div class="reveal mb-11 flex flex-wrap items-end justify-between gap-6">
+                <div>
+                    <span class="mb-2.5 block text-[11.5px] font-medium uppercase tracking-[0.22em] text-wabi-brass">
+                        Katalog Terverifikasi
+                    </span>
+                    <h2
+                        id="heading-featured"
+                        class="font-serif text-[38px] font-normal leading-tight lg:text-[48px]"
+                    >
+                        Pilihan Karya
+                    </h2>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-5">
+                    <div
+                        class="inline-flex gap-6 border-b border-wabi-stone"
+                        role="tablist"
+                        aria-label="Filter tampilan karya"
+                    >
+                        <button
+                            type="button"
+                            role="tab"
+                            aria-selected="true"
+                            data-featured-tab="unggulan"
+                            class="-mb-px border-b-2 border-wabi-brass py-2 text-[13px] font-medium uppercase tracking-[0.12em] text-wabi-char transition-colors"
+                        >
+                            Unggulan
+                        </button>
+                        <button
+                            type="button"
+                            role="tab"
+                            aria-selected="false"
+                            data-featured-tab="semua"
+                            class="-mb-px border-b-2 border-transparent py-2 text-[13px] font-medium uppercase tracking-[0.12em] text-wabi-bark transition-colors hover:text-wabi-char"
+                        >
+                            Semua Karya
+                        </button>
+                    </div>
+
+                    <div class="inline-flex gap-2.5">
+                        <button
+                            type="button"
+                            id="featured-prev"
+                            aria-label="Geser produk ke kiri"
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-wabi-stone bg-wabi-paper text-wabi-char transition-colors hover:border-wabi-char hover:bg-wabi-linen"
+                        >
+                            <span
+                                class="material-symbols-outlined"
+                                aria-hidden="true"
+                            >
+                                arrow_back_ios_new
+                            </span>
+                        </button>
+                        <button
+                            type="button"
+                            id="featured-next"
+                            aria-label="Geser produk ke kanan"
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-wabi-stone bg-wabi-paper text-wabi-char transition-colors hover:border-wabi-char hover:bg-wabi-linen"
+                        >
+                            <span
+                                class="material-symbols-outlined"
+                                aria-hidden="true"
+                            >
+                                arrow_forward_ios
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full overflow-hidden pl-5 sm:pl-8 lg:pl-[max(3rem,calc((100vw-1420px)/2+3rem))]">
+            <div
+                id="featured-track"
+                role="region"
+                aria-label="Daftar produk pilihan"
+                class="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 pr-[14vw] lg:gap-7"
+            >
+                {orderedProducts.map((product) => (
+                    <ProductCard
+                        product={product}
+                        extraClass="flex-[0_0_clamp(265px,24vw,330px)] snap-start"
+                    />
+                ))}
+            </div>
+        </div>
+
+        <div class="mx-auto mt-9 max-w-[1420px] px-5 sm:px-8 lg:px-12">
+            <a
+                href="/produk"
+                class="inline-flex items-center gap-2 border-b border-wabi-stone pb-1 text-[14px] font-medium tracking-[0.06em] text-wabi-char transition-colors hover:border-wabi-brass hover:text-wabi-brass"
+            >
+                Lihat seluruh katalog produk &#8594;
+            </a>
+        </div>
+    </section>
+
+    <!-- 3. Koleksi Wabi-Sabi (Komposisi Asimetris Berirama) -->
+    <section
+        class="border-t border-wabi-stone/70 py-20 lg:py-28"
+        aria-labelledby="heading-collections"
+    >
+        <div class="mx-auto max-w-[1420px] px-5 sm:px-8 lg:px-12">
+            <div class="reveal mb-14 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+                <div>
+                    <span class="mb-2.5 block text-[11.5px] font-medium uppercase tracking-[0.22em] text-wabi-brass">
+                        Eksplorasi Kategori
+                    </span>
+                    <h2
+                        id="heading-collections"
+                        class="font-serif text-[38px] font-normal leading-tight lg:text-[48px]"
+                    >
+                        Koleksi Bjo Furface
+                    </h2>
+                </div>
+                <p class="max-w-md text-[14.5px] leading-relaxed text-wabi-bark">
+                    Setiap kategori lahir dari pengolahan serat limbah kayu jati
+                    dan resin dengan bentuk fungsional.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3 md:items-start">
+                <a
+                    href="/produk?kategori=Tas%20Kayu"
+                    class="reveal group block"
+                >
+                    <div class="aspect-[4/5] overflow-hidden rounded-[6px] bg-wabi-linen">
+                        <img
+                            src="/assets/img/lucia-island-new-natural.jpg"
+                            alt="Koleksi Tas Kayu Lucia Island New Natural berbahan limbah kayu jati"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-500 ease-luxury group-hover:scale-[1.03]"
+                        />
+                    </div>
+                    <div class="flex items-baseline justify-between border-b border-wabi-stone pb-3.5 pt-4">
+                        <h3 class="font-serif text-[25px] font-normal">
+                            Tas Kayu
+                        </h3>
+                        <span class="text-[13px] tracking-wide text-wabi-bark transition-colors group-hover:text-wabi-brass">
+                            2 Karya &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Offset vertikal Wabi-Sabi pada layar desktop -->
+                <a
+                    href="/produk?kategori=Jam%20%26%20Jam%20Dinding"
+                    class="reveal group block md:mt-10"
+                >
+                    <div class="aspect-[4/5] overflow-hidden rounded-[6px] bg-wabi-linen">
+                        <img
+                            src="/assets/img/natural-island-wall-clock.jpg"
+                            alt="Koleksi Jam dan Jam Dinding Natural Island Wall Clock berbahan kayu jati dan resin"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-500 ease-luxury group-hover:scale-[1.03]"
+                        />
+                    </div>
+                    <div class="flex items-baseline justify-between border-b border-wabi-stone pb-3.5 pt-4">
+                        <h3 class="font-serif text-[25px] font-normal">
+                            Jam &amp; Jam Dinding
+                        </h3>
+                        <span class="text-[13px] tracking-wide text-wabi-bark transition-colors group-hover:text-wabi-brass">
+                            3 Karya &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <a
+                    href="/produk?kategori=Peralatan%20Dapur"
+                    class="reveal group block"
+                >
+                    <div class="aspect-[4/5] overflow-hidden rounded-[6px] bg-wabi-linen">
+                        <img
+                            src="/assets/img/penampan-island-1.jpg"
+                            alt="Koleksi Peralatan Dapur Penampan Island berbahan limbah kayu jati dan resin"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-500 ease-luxury group-hover:scale-[1.03]"
+                        />
+                    </div>
+                    <div class="flex items-baseline justify-between border-b border-wabi-stone pb-3.5 pt-4">
+                        <h3 class="font-serif text-[25px] font-normal">
+                            Peralatan Dapur
+                        </h3>
+                        <span class="text-[13px] tracking-wide text-wabi-bark transition-colors group-hover:text-wabi-brass">
+                            2 Karya &rarr;
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Pernyataan Luxury Typography -->
+    <section
+        class="py-24 text-center lg:py-36"
+        aria-labelledby="heading-statement"
+    >
+        <div class="reveal mx-auto max-w-4xl px-6">
+            <div
+                class="mx-auto mb-8 h-px w-12 bg-wabi-brass"
+                aria-hidden="true"
+            ></div>
+            <h2
+                id="heading-statement"
+                class="mb-9 font-serif text-[30px] font-light leading-[1.3] text-wabi-char sm:text-[38px] lg:text-[45px]"
+            >
+                Berawal sejak 2017 di Desa Kemiri Barat, Batang, Bjo Furface
+                mengolah potongan limbah kayu jati menjadi karya fungsional yang
+                membawa karakter serat alami berbeda untuk setiap pemiliknya.
+            </h2>
+            <a
+                href="/tentang"
+                class="inline-flex items-center gap-2 border-b border-wabi-stone pb-1 text-[14px] font-medium tracking-[0.06em] text-wabi-char transition-colors hover:border-wabi-brass hover:text-wabi-brass"
+            >
+                Baca cerita lengkap kami &#8594;
+            </a>
+        </div>
+    </section>
+
+    <!-- 5. Split Filosofi Kriya (Blok Gelap Walnut + Foto Proses) -->
+    <section
+        class="bg-wabi-walnut text-white"
+        aria-labelledby="heading-split-craft"
+    >
+        <div class="grid min-h-[540px] grid-cols-1 lg:grid-cols-2">
+            <div class="reveal mx-auto flex max-w-[660px] flex-col items-start justify-center px-6 py-16 sm:px-12 lg:ml-auto lg:py-24 lg:pr-16">
+                <span class="mb-3 text-[11.5px] font-medium uppercase tracking-[0.24em] text-white/70">
+                    Filosofi Kriya
+                </span>
+                <h2
+                    id="heading-split-craft"
+                    class="mb-5 font-serif text-[36px] font-light leading-[1.15] lg:text-[46px]"
+                >
+                    Satu Potongan Kayu, Satu Karakter Utuh
+                </h2>
+                <p class="mb-9 text-[15.5px] leading-relaxed text-white/80">
+                    Setiap alur serat kayu jati dan aliran resin memiliki pola
+                    yang terbentuk secara alami selama pengerjaan manual oleh
+                    pengrajin lokal kami. Prinsip ini melahirkan identitas{" "}
+                    <em class="font-serif text-[18px]">
+                        One Product For One Person
+                    </em>{" "}
+                    pada setiap tas, jam, maupun perlengkapan saji yang
+                    dihasilkan.
+                </p>
+                <a
+                    href="/keunggulan"
+                    class="inline-flex items-center justify-center rounded-full border border-white/55 px-7 py-3 text-[13px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:border-white hover:bg-white hover:text-wabi-char"
+                >
+                    Pelajari Keunggulan
+                </a>
+            </div>
+
+            <div class="min-h-[380px] bg-[#16100C]">
+                <img
+                    src="/assets/img/105243057.jpg"
+                    alt="Pengrajin Bjo Furface sedang memoles permukaan kerajinan kayu jati di workshop Kemiri Barat"
+                    loading="lazy"
+                    class="h-full w-full object-cover"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Galeri Proses & Workshop (Grid Asimetris Wabi-Sabi) -->
+    <section class="py-20 lg:py-28" aria-labelledby="heading-process-preview">
+        <div class="mx-auto max-w-[1420px] px-5 sm:px-8 lg:px-12">
+            <div class="reveal mb-12 flex flex-wrap items-end justify-between gap-6">
+                <div>
+                    <span class="mb-2.5 block text-[11.5px] font-medium uppercase tracking-[0.22em] text-wabi-brass">
+                        Di Balik Workshop
+                    </span>
+                    <h2
+                        id="heading-process-preview"
+                        class="font-serif text-[38px] font-normal leading-tight lg:text-[48px]"
+                    >
+                        Dari Limbah Jati Menjadi Karya
+                    </h2>
+                </div>
+                <a
+                    href="/galeri"
+                    class="inline-flex items-center gap-2 border-b border-wabi-stone pb-1 text-[14px] font-medium tracking-[0.06em] text-wabi-char transition-colors hover:border-wabi-brass hover:text-wabi-brass"
+                >
+                    Buka galeri dokumentasi &#8594;
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4">
+                <figure class="reveal m-0">
+                    <div class="aspect-[4/5] overflow-hidden rounded-[6px] bg-wabi-linen">
+                        <img
+                            src="/assets/img/104240720.jpg"
+                            alt="Tumpukan bahan baku limbah kayu jati pilihan di workshop Bjo Furface"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-500 ease-luxury hover:scale-[1.03]"
+                        />
+                    </div>
+                    <figcaption class="mt-3 text-[13.5px] text-wabi-bark">
+                        Seleksi bahan baku limbah kayu jati
+                    </figcaption>
+                </figure>
+
+                <figure class="reveal m-0 lg:mt-8">
+                    <div class="aspect-[4/5] overflow-hidden rounded-[6px] bg-wabi-linen">
+                        <img
+                            src="/assets/img/105208139.jpg"
+                            alt="Proses pemotongan presisi potongan kayu jati menggunakan mesin potong di workshop"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-500 ease-luxury hover:scale-[1.03]"
+                        />
+                    </div>
+                    <figcaption class="mt-3 text-[13.5px] text-wabi-bark">
+                        Pemotongan &amp; pembentukan pola dasar
+                    </figcaption>
+                </figure>
+
+                <figure class="reveal m-0">
+                    <div class="aspect-[4/5] overflow-hidden rounded-[6px] bg-wabi-linen">
+                        <img
+                            src="/assets/img/104440232.jpg"
+                            alt="Proses perakitan komponen kayu jati dan detail pengerjaan manual oleh pengrajin"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-500 ease-luxury hover:scale-[1.03]"
+                        />
+                    </div>
+                    <figcaption class="mt-3 text-[13.5px] text-wabi-bark">
+                        Perakitan detail konstruksi produk
+                    </figcaption>
+                </figure>
+
+                <figure class="reveal m-0 lg:mt-8">
+                    <div class="aspect-[4/5] overflow-hidden rounded-[6px] bg-wabi-linen">
+                        <img
+                            src="/assets/img/105609566.jpg"
+                            alt="Karya seni peta kepulauan Indonesia yang dibuat dari perpaduan kayu jati dan resin"
+                            loading="lazy"
+                            class="h-full w-full object-cover transition-transform duration-500 ease-luxury hover:scale-[1.03]"
+                        />
+                    </div>
+                    <figcaption class="mt-3 text-[13.5px] text-wabi-bark">
+                        Eksplorasi komposisi kayu &amp; resin
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. USP Bar Linen (4 Kolom) -->
+    <section
+        class="border-t border-wabi-stone bg-wabi-linen py-14"
+        aria-label="Nilai utama Bjo Furface"
+    >
+        <div class="mx-auto max-w-[1420px] px-5 sm:px-8 lg:px-12">
+            <div class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="reveal">
+                    <h3 class="mb-1.5 font-serif text-[23px] font-medium">
+                        Handmade
+                    </h3>
+                    <p class="text-[14px] text-wabi-bark">
+                        Dikerjakan secara manual oleh pengrajin lokal di Subah,
+                        Batang.
+                    </p>
+                </div>
+
+                <div class="reveal border-t border-wabi-stone pt-5 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
+                    <h3 class="mb-1.5 font-serif text-[23px] font-medium">
+                        Satu Produk Satu Motif
+                    </h3>
+                    <p class="text-[14px] text-wabi-bark">
+                        Alur serat jati dan resin tidak pernah berulang identik.
+                    </p>
+                </div>
+
+                <div class="reveal border-t border-wabi-stone pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
+                    <h3 class="mb-1.5 font-serif text-[23px] font-medium">
+                        Limbah Jati Berkelanjutan
+                    </h3>
+                    <p class="text-[14px] text-wabi-bark">
+                        Memanfaatkan potongan kayu jati menjadi kriya bernilai
+                        guna.
+                    </p>
+                </div>
+
+                <div class="reveal border-t border-wabi-stone pt-5 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
+                    <h3 class="mb-1.5 font-serif text-[23px] font-medium">
+                        Sejak 2017
+                    </h3>
+                    <p class="text-[14px] text-wabi-bark">
+                        Didirikan oleh Bejo Prichatianto di Desa Kemiri Barat.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 1. Hero Carousel */
+  const slides = document.querySelectorAll<HTMLElement>('[data-hero-slide]');
+  const dots = document.querySelectorAll<HTMLButtonElement>('[data-hero-dot]');
+  const heroPrev = document.getElementById('hero-prev');
+  const heroNext = document.getElementById('hero-next');
+
+  if (slides.length > 0) {
+    let currentSlide = 0;
+    let heroTimer: number | undefined;
+
+    function setHeroSlide(idx: number) {
+      const next = (idx + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        const active = i === next;
+        slide.classList.toggle('opacity-100', active);
+        slide.classList.toggle('pointer-events-auto', active);
+        slide.classList.toggle('opacity-0', !active);
+        slide.classList.toggle('pointer-events-none', !active);
+        slide.setAttribute('aria-hidden', String(!active));
+      });
+      dots.forEach((dot, i) => {
+        const active = i === next;
+        dot.classList.toggle('bg-white', active);
+        dot.classList.toggle('scale-125', active);
+        dot.classList.toggle('bg-transparent', !active);
+        dot.setAttribute('aria-selected', String(active));
+      });
+      currentSlide = next;
+    }
+
+    function startHeroAuto() {
+      if (reduced) return;
+      window.clearInterval(heroTimer);
+      heroTimer = window.setInterval(() => setHeroSlide(currentSlide + 1), 5500);
+    }
+
+    heroPrev?.addEventListener('click', () => {
+      setHeroSlide(currentSlide - 1);
+      startHeroAuto();
+    });
+    heroNext?.addEventListener('click', () => {
+      setHeroSlide(currentSlide + 1);
+      startHeroAuto();
+    });
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        setHeroSlide(Number(dot.getAttribute('data-hero-dot')));
+        startHeroAuto();
+      });
+    });
+
+    startHeroAuto();
+  }
+
+  /* 2. Featured Carousel + Tab Unggulan / Semua Karya */
+  const track = document.getElementById('featured-track');
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-featured-tab]');
+  const featPrev = document.getElementById('featured-prev');
+  const featNext = document.getElementById('featured-next');
+
+  if (track) {
+    const trackEl = track;
+    let snapTimer: number | undefined;
+    let isAutoScrolling = false;
+    let scrollFlagTimer: number | undefined;
+
+    function setTabVisual(mode: string | null) {
+      tabs.forEach((tab) => {
+        const active = tab.getAttribute('data-featured-tab') === mode;
+        tab.setAttribute('aria-selected', String(active));
+        tab.classList.toggle('border-wabi-brass', active);
+        tab.classList.toggle('text-wabi-char', active);
+        tab.classList.toggle('border-transparent', !active);
+        tab.classList.toggle('text-wabi-bark', !active);
+      });
+    }
+
+    function smoothScrollTrack(targetLeft: number) {
+      if (reduced) {
+        trackEl.scrollLeft = targetLeft;
+        return;
+      }
+      isAutoScrolling = true;
+      trackEl.style.scrollSnapType = 'none';
+      trackEl.scrollTo({ left: targetLeft, behavior: 'smooth' });
+
+      window.clearTimeout(snapTimer);
+      snapTimer = window.setTimeout(() => {
+        trackEl.style.scrollSnapType = '';
+      }, 520);
+
+      window.clearTimeout(scrollFlagTimer);
+      scrollFlagTimer = window.setTimeout(() => {
+        isAutoScrolling = false;
+      }, 550);
+    }
+
+    function getNonFeaturedOffset(): number {
+      const firstCard = trackEl.firstElementChild as HTMLElement | null;
+      const firstOther = trackEl.querySelector<HTMLElement>('[data-featured="false"]');
+      if (!firstCard || !firstOther) return 0;
+      return Math.max(0, firstOther.offsetLeft - firstCard.offsetLeft);
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const mode = tab.getAttribute('data-featured-tab');
+        setTabVisual(mode);
+        smoothScrollTrack(mode === 'unggulan' ? 0 : getNonFeaturedOffset());
+      });
+    });
+
+    trackEl.addEventListener(
+      'scroll',
+      () => {
+        if (isAutoScrolling) return;
+        const threshold = getNonFeaturedOffset() * 0.6;
+        setTabVisual(threshold > 0 && trackEl.scrollLeft >= threshold ? 'semua' : 'unggulan');
+      },
+      { passive: true }
+    );
+
+    function stepWidth(): number {
+      const first = trackEl.firstElementChild as HTMLElement | null;
+      return first ? first.getBoundingClientRect().width + 28 : 340;
+    }
+
+    featPrev?.addEventListener('click', () => {
+      trackEl.scrollBy({ left: -stepWidth(), behavior: reduced ? 'auto' : 'smooth' });
+    });
+    featNext?.addEventListener('click', () => {
+      trackEl.scrollBy({ left: stepWidth(), behavior: reduced ? 'auto' : 'smooth' });
+    });
+  }
+</script>

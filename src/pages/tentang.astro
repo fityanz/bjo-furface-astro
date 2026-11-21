@@ -1,0 +1,215 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { BRAND_INFO } from "../data/products.js";
+
+const productionSteps = [
+    {
+        numeral: "I",
+        title: "Seleksi Bahan Baku",
+        desc: "Memilih potongan limbah kayu jati dengan karakter serat dan kepadatan yang sesuai untuk konstruksi produk.",
+        image: "/assets/img/104240720.jpg",
+        alt: "Tahap pertama: pemilihan bahan baku potongan limbah kayu jati",
+    },
+    {
+        numeral: "II",
+        title: "Potong & Bentuk Pola",
+        desc: "Kayu dipotong sesuai ukuran pola tas, panel jam, maupun peralatan saji secara presisi di workshop.",
+        image: "/assets/img/105208139.jpg",
+        alt: "Tahap kedua: pemotongan potongan kayu jati sesuai pola desain produk",
+    },
+    {
+        numeral: "III",
+        title: "Rakit & Padu Resin",
+        desc: "Komponen kayu dirakit bersama elemen resin dan perangkat pendukung hingga membentuk struktur utuh.",
+        image: "/assets/img/104440232.jpg",
+        alt: "Tahap ketiga: perakitan komponen kayu jati serta penggabungan elemen produk",
+    },
+    {
+        numeral: "IV",
+        title: "Amplas & Finishing",
+        desc: "Permukaan diamplas bertahap dan dipoles hingga serat kayu jati serta kejernihan resin tampil optimal.",
+        image: "/assets/img/105243057.jpg",
+        alt: "Tahap keempat: pengamplasan halus dan proses poles finishing permukaan kayu dan resin",
+    },
+];
+---
+
+<BaseLayout
+    title="Tentang Kami — Bjo Furface | Kriya Limbah Kayu Jati Batang"
+    description="Kisah Bjo Furface sejak 2017 di Desa Kemiri Barat, Subah, Kabupaten Batang. Mengolah limbah kayu jati Alas Roban menjadi karya unik dengan prinsip One Product For One Person."
+>
+    <!-- Editorial Banner -->
+    <section class="border-b border-wabi-stone bg-wabi-linen py-16 lg:py-24">
+        <div class="mx-auto grid max-w-[1420px] grid-cols-1 items-end gap-8 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:px-12">
+            <div>
+                <span class="mb-3 block text-[11.5px] font-medium uppercase tracking-[0.22em] text-wabi-brass">
+                    Tentang Bjo Furface
+                </span>
+                <h1 class="font-serif text-[40px] font-normal leading-[1.1] sm:text-[50px] lg:text-[56px]">
+                    Menghidupkan Kembali Limbah Kayu Jati
+                </h1>
+            </div>
+            <p class="font-serif text-[20px] leading-relaxed text-wabi-char lg:text-[23px]">
+                Didirikan pada tahun {BRAND_INFO.since} oleh{" "}
+                {BRAND_INFO.founder} di Desa Kemiri Barat, Kecamatan Subah,
+                Kabupaten Batang, Bjo Furface merancang tas kayu dan
+                perlengkapan fungsional dari limbah kayu jati kawasan Alas
+                Roban.
+            </p>
+        </div>
+    </section>
+
+    <!-- Cerita Brand (Komposisi Asimetris 7:5) -->
+    <section class="py-20 lg:py-28" aria-labelledby="heading-story">
+        <div class="mx-auto grid max-w-[1420px] grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16 lg:px-12">
+            <div class="reveal lg:col-span-6">
+                <div class="aspect-[4/3] overflow-hidden rounded-[6px] bg-wabi-linen">
+                    <img
+                        src="/assets/img/104240720.jpg"
+                        alt="Bahan baku potongan limbah kayu jati di workshop Bjo Furface Desa Kemiri Barat"
+                        loading="lazy"
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+            </div>
+
+            <div class="reveal lg:col-span-6">
+                <div
+                    class="mb-6 h-px w-12 bg-wabi-brass"
+                    aria-hidden="true"
+                ></div>
+                <h2
+                    id="heading-story"
+                    class="font-serif text-[36px] font-normal leading-tight lg:text-[44px]"
+                >
+                    Akar Kriya di Kemiri Barat
+                </h2>
+                <p class="mt-5 text-[15.5px] leading-relaxed text-wabi-bark">
+                    Potongan limbah kayu jati dari kawasan Alas Roban menyimpan
+                    guratan serat, mata kayu, dan kontur alami yang tidak dapat
+                    direplikasi oleh mesin massal. Di workshop Bjo Furface yang
+                    berlokasi di Desa Kemiri Barat, Subah, material tersebut
+                    dipilih dan diolah kembali menjadi ragam produk kriya
+                    seperti tas kayu, jam tangan, jam dinding, hingga peralatan
+                    saji dapur.
+                </p>
+                <p class="mt-4 text-[15.5px] leading-relaxed text-wabi-bark">
+                    Setiap perpaduan kayu jati dan resin menghasilkan pola
+                    visual yang berdiri sendiri untuk masing-masing unit yang
+                    selesai diproduksi.
+                </p>
+
+                <!-- ISI DARI ADMIN: detail makna nama "Furface" dan biografi mendetail pendiri ditambahkan setelah transkrip wawancara terkonfirmasi -->
+
+                <dl class="mt-9 grid grid-cols-1 gap-6 border-t border-wabi-stone pt-7 sm:grid-cols-2">
+                    <div>
+                        <dt class="text-[11px] uppercase tracking-[0.16em] text-wabi-brass">
+                            Tahun Berdiri
+                        </dt>
+                        <dd class="mt-1 font-serif text-[21px] font-medium">
+                            {BRAND_INFO.since}
+                        </dd>
+                    </div>
+                    <div>
+                        <dt class="text-[11px] uppercase tracking-[0.16em] text-wabi-brass">
+                            Pendiri
+                        </dt>
+                        <dd class="mt-1 font-serif text-[21px] font-medium">
+                            {BRAND_INFO.founder}
+                        </dd>
+                    </div>
+                    <div>
+                        <dt class="text-[11px] uppercase tracking-[0.16em] text-wabi-brass">
+                            Lokasi Workshop
+                        </dt>
+                        <dd class="mt-1 font-serif text-[21px] font-medium">
+                            Desa Kemiri Barat, Kec. Subah, Kab. Batang
+                        </dd>
+                    </div>
+                    <div>
+                        <dt class="text-[11px] uppercase tracking-[0.16em] text-wabi-brass">
+                            Material Utama
+                        </dt>
+                        <dd class="mt-1 font-serif text-[21px] font-medium">
+                            Limbah kayu jati Alas Roban &amp; resin
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- Garis Besar Proses Produksi -->
+    <section
+        class="border-t border-wabi-stone bg-wabi-linen py-20 lg:py-28"
+        aria-labelledby="heading-production"
+    >
+        <div class="mx-auto max-w-[1420px] px-5 sm:px-8 lg:px-12">
+            <div class="reveal mb-14 text-center">
+                <span class="mb-2.5 block text-[11.5px] font-medium uppercase tracking-[0.22em] text-wabi-brass">
+                    Alur Pengerjaan
+                </span>
+                <h2
+                    id="heading-production"
+                    class="font-serif text-[38px] font-normal leading-tight lg:text-[46px]"
+                >
+                    Garis Besar Proses Produksi
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4">
+                {productionSteps.map((step, idx) => (
+                    <article
+                        class:list={[
+                            "reveal rounded-[6px] border border-wabi-stone bg-wabi-paper p-5",
+                            idx % 2 === 1 && "lg:mt-8",
+                        ]}
+                    >
+                        <div class="mb-5 aspect-[4/3] overflow-hidden rounded-[4px] bg-wabi-linen">
+                            <img
+                                src={step.image}
+                                alt={step.alt}
+                                loading="lazy"
+                                class="h-full w-full object-cover"
+                            />
+                        </div>
+                        <span class="font-serif text-[15px] italic tracking-widest text-wabi-brass">
+                            {step.numeral}
+                        </span>
+                        <h3 class="mt-1 font-serif text-[23px] font-medium leading-snug">
+                            {step.title}
+                        </h3>
+                        <p class="mt-2.5 text-[14px] leading-relaxed text-wabi-bark">
+                            {step.desc}
+                        </p>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Blok Gelap Tagline Resmi -->
+    <section
+        class="bg-wabi-walnut px-6 py-24 text-center text-white lg:py-32"
+        aria-label="Tagline resmi Bjo Furface"
+    >
+        <div class="reveal mx-auto max-w-4xl">
+            <span class="text-[11.5px] font-medium uppercase tracking-[0.24em] text-white/70">
+                Tagline Resmi
+            </span>
+            <blockquote class="my-4 font-serif text-[36px] font-light leading-[1.15] sm:text-[48px] lg:text-[56px]">
+                &ldquo;{BRAND_INFO.tagline}&rdquo;
+            </blockquote>
+            <p class="mb-9 text-[15.5px] text-white/75">
+                Setiap karya membawa karakter motif yang hadir hanya satu kali
+                untuk pemiliknya.
+            </p>
+            <a
+                href="/produk"
+                class="inline-flex items-center justify-center rounded-full border border-white/55 px-7 py-3 text-[13px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:border-white hover:bg-white hover:text-wabi-char"
+            >
+                Jelajahi Katalog Produk
+            </a>
+        </div>
+    </section>
+</BaseLayout>

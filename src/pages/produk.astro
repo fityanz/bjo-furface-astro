@@ -1,0 +1,221 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { PRODUCTS } from "../data/products.js";
+
+const categories = [
+    "Semua",
+    "Tas Kayu",
+    "Jam & Jam Dinding",
+    "Peralatan Dapur",
+];
+---
+
+<BaseLayout
+    title="Katalog Produk — Bjo Furface | Tas Kayu, Jam & Peralatan Dapur"
+    description="Katalog resmi Bjo Furface: Tas Kayu Pemba Abstrack, Lucia Island New Natural, Jam Tangan Kayu, Jam Dinding, Telenan Island, dan Penampan Island."
+>
+    <!-- Panel Header Linen -->
+    <section class="border-b border-wabi-stone bg-wabi-linen py-16 lg:py-24">
+        <div class="mx-auto grid max-w-[1420px] grid-cols-1 items-end gap-8 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:px-12">
+            <div>
+                <span class="mb-3 block text-[11.5px] font-medium uppercase tracking-[0.22em] text-wabi-brass">
+                    Katalog Karya
+                </span>
+                <h1 class="font-serif text-[40px] font-normal leading-[1.1] sm:text-[50px] lg:text-[56px]">
+                    Koleksi Produk
+                </h1>
+            </div>
+            <p class="font-serif text-[20px] leading-relaxed text-wabi-char lg:text-[23px]">
+                Rangkaian produk kriya limbah kayu jati dan resin yang
+                dikerjakan secara manual di Desa Kemiri Barat, Batang. Setiap
+                unit membawa pola serat kayu yang berbeda.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Bar & Grid Katalog -->
+    <section class="py-16 lg:py-24" aria-label="Daftar dan filter produk">
+        <div class="mx-auto max-w-[1420px] px-5 sm:px-8 lg:px-12">
+            <div class="mb-6 flex flex-wrap items-center justify-between gap-5 border-b border-wabi-stone pb-6">
+                <div
+                    class="flex flex-wrap gap-2.5"
+                    role="group"
+                    aria-label="Filter berdasarkan kategori"
+                >
+                    {categories.map((cat, idx) => (
+                        <button
+                            type="button"
+                            data-category-filter={cat}
+                            aria-pressed={idx === 0 ? "true" : "false"}
+                            class:list={[
+                                "rounded-full border px-5 py-2 text-[13px] tracking-[0.05em] transition-colors duration-300",
+                                idx === 0
+                                    ? "border-wabi-char bg-wabi-char text-wabi-paper"
+                                    : "border-wabi-stone bg-transparent text-wabi-char hover:border-wabi-char",
+                            ]}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
+
+                <div class="inline-flex items-center gap-3">
+                    <label for="sort-select" class="text-[13px] text-wabi-bark">
+                        Urutkan:
+                    </label>
+                    <select
+                        id="sort-select"
+                        class="cursor-pointer rounded-[6px] border border-wabi-stone bg-wabi-paper px-3.5 py-2 text-[13.5px] text-wabi-char"
+                    >
+                        <option value="default">Urutan Kurasi</option>
+                        <option value="price-asc">
+                            Harga: Terendah ke Tertinggi
+                        </option>
+                        <option value="price-desc">
+                            Harga: Tertinggi ke Terendah
+                        </option>
+                        <option value="name-asc">Nama: A &ndash; Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <p
+                id="catalog-status"
+                aria-live="polite"
+                class="mb-8 text-[13.5px] text-wabi-bark"
+            >
+                Menampilkan {PRODUCTS.length} produk (Semua)
+            </p>
+
+            <!-- ISI DARI ADMIN: harga produk saat ini mengacu pada data listing KKI Juli 2025 dan menunggu konfirmasi final admin -->
+            <div
+                id="product-grid"
+                class="grid grid-cols-1 gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-4"
+            >
+                {PRODUCTS.map((product) => (
+                    <ProductCard product={product} showExtendedSpecs={true} />
+                ))}
+
+                <!-- Kartu Editorial ditempatkan paling bawah (col-span-full) agar tidak memotong grid produk -->
+                <aside
+                    id="editorial-closing-card"
+                    aria-label="Sorotan eksplorasi karya kayu jati dan resin"
+                    class="col-span-full mt-4 grid grid-cols-1 items-center overflow-hidden rounded-[6px] border border-wabi-stone bg-wabi-linen lg:grid-cols-[1.15fr_0.85fr]"
+                >
+                    <div class="h-full min-h-[280px] lg:min-h-[340px]">
+                        <img
+                            src="/assets/img/105609566.jpg"
+                            alt="Karya peta kepulauan Indonesia dari perpaduan limbah kayu jati dan resin buatan Bjo Furface"
+                            loading="lazy"
+                            class="h-full w-full object-cover"
+                        />
+                    </div>
+                    <div class="p-8 sm:p-10 lg:p-12">
+                        <span class="mb-2.5 block text-[11.5px] font-medium uppercase tracking-[0.22em] text-wabi-brass">
+                            Eksplorasi Kriya
+                        </span>
+                        <h2 class="mb-3 font-serif text-[30px] font-normal leading-tight lg:text-[36px]">
+                            One Product For One Person
+                        </h2>
+                        <p class="mb-6 text-[14.5px] leading-relaxed text-wabi-bark">
+                            Setiap alur serat kayu jati dan resin menghasilkan
+                            komposisi motif alami yang tidak identik satu sama
+                            lain.
+                        </p>
+                        <a
+                            href="/galeri"
+                            class="inline-flex items-center gap-2 border-b border-wabi-stone pb-1 text-[14px] font-medium tracking-[0.06em] text-wabi-char transition-colors hover:border-wabi-brass hover:text-wabi-brass"
+                        >
+                            Lihat eksplorasi di galeri &#8594;
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<script>
+  const grid = document.getElementById('product-grid');
+  const editorialCard = document.getElementById('editorial-closing-card');
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-category-filter]');
+  const sortSelect = document.getElementById('sort-select') as HTMLSelectElement | null;
+  const statusEl = document.getElementById('catalog-status');
+
+  if (grid) {
+    const gridEl = grid;
+    const cards = Array.from(gridEl.querySelectorAll<HTMLElement>('[data-product-card]'));
+    cards.forEach((card, idx) => {
+      card.dataset.originalOrder = String(idx);
+    });
+
+    const validCategories = ['Semua', 'Tas Kayu', 'Jam & Jam Dinding', 'Peralatan Dapur'];
+    const params = new URLSearchParams(window.location.search);
+    const paramCat = params.get('kategori') || 'Semua';
+
+    let activeCategory = validCategories.includes(paramCat) ? paramCat : 'Semua';
+    let activeSort = 'default';
+
+    function syncFilterStyles() {
+      filterBtns.forEach((btn) => {
+        const match = btn.getAttribute('data-category-filter') === activeCategory;
+        btn.setAttribute('aria-pressed', String(match));
+        btn.classList.toggle('border-wabi-char', match);
+        btn.classList.toggle('bg-wabi-char', match);
+        btn.classList.toggle('text-wabi-paper', match);
+        btn.classList.toggle('border-wabi-stone', !match);
+        btn.classList.toggle('bg-transparent', !match);
+        btn.classList.toggle('text-wabi-char', !match);
+      });
+    }
+
+    function applyFilterAndSort() {
+      const sorted = [...cards].sort((a, b) => {
+        if (activeSort === 'price-asc') {
+          return Number(a.dataset.price) - Number(b.dataset.price);
+        }
+        if (activeSort === 'price-desc') {
+          return Number(b.dataset.price) - Number(a.dataset.price);
+        }
+        if (activeSort === 'name-asc') {
+          return (a.dataset.name || '').localeCompare(b.dataset.name || '', 'id');
+        }
+        return Number(a.dataset.originalOrder) - Number(b.dataset.originalOrder);
+      });
+
+      let visibleCount = 0;
+      sorted.forEach((card) => {
+        const match = activeCategory === 'Semua' || card.dataset.category === activeCategory;
+        card.classList.toggle('hidden', !match);
+        if (match) visibleCount += 1;
+        gridEl.appendChild(card);
+      });
+
+      if (editorialCard) {
+        editorialCard.classList.toggle('hidden', visibleCount === 0);
+        gridEl.appendChild(editorialCard);
+      }
+
+      if (statusEl) {
+        statusEl.textContent = `Menampilkan ${visibleCount} produk (${activeCategory})`;
+      }
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeCategory = btn.getAttribute('data-category-filter') || 'Semua';
+        syncFilterStyles();
+        applyFilterAndSort();
+      });
+    });
+
+    sortSelect?.addEventListener('change', () => {
+      activeSort = sortSelect.value;
+      applyFilterAndSort();
+    });
+
+    syncFilterStyles();
+    applyFilterAndSort();
+  }
+</script>
